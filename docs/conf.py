@@ -23,7 +23,7 @@ if on_rtd or not importlib.util.find_spec('numpy'):
             return MagicMock()
 
     # Mock these modules for autodoc
-    MOCK_MODULES = ['numpy', 'pandas', 'matplotlib', 'matplotlib.pyplot', 'scipy', 'scipy.stats']
+    MOCK_MODULES = ['numpy', 'pandas', 'matplotlib', 'matplotlib.pyplot', 'matplotlib.cm', 'seaborn', 'scipy', 'scipy.stats']
     sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
 
 # Project information
