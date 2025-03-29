@@ -5,8 +5,26 @@ import sys
 from datetime import datetime
 
 # Add the project root and src directories to the path
-sys.path.insert(0, os.path.abspath('..'))
+sys.path.insert(0, os.path.abspath('..')) 
 sys.path.insert(0, os.path.abspath('../src'))
+
+# Mock imports for libraries that may not be available during docs build
+import importlib.util
+
+# Check if we need to use mock imports (e.g., on ReadTheDocs)
+on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
+
+if on_rtd or not importlib.util.find_spec('numpy'):
+    from unittest.mock import MagicMock
+
+    class Mock(MagicMock):
+        @classmethod
+        def __getattr__(cls, name):
+            return MagicMock()
+
+    # Mock these modules for autodoc
+    MOCK_MODULES = ['numpy', 'pandas', 'matplotlib', 'matplotlib.pyplot', 'scipy', 'scipy.stats']
+    sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
 
 # Project information
 project = 'Macrodata Refinement'
