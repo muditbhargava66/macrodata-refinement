@@ -321,12 +321,15 @@ class TestInterpolateMissing:
         result_nearest = interpolate_missing(data, method="nearest")
         assert not np.isnan(result_nearest).any()
         
-        # Cubic interpolation
-        result_cubic = interpolate_missing(data, method="cubic")
+        # Create a longer dataset for cubic interpolation (needs more points)
+        longer_data = np.array([1.0, 2.0, 3.0, np.nan, np.nan, 6.0, 7.0, 8.0])
+        
+        # Cubic interpolation - requires at least 4 non-NaN points
+        result_cubic = interpolate_missing(longer_data, method="cubic")
         assert not np.isnan(result_cubic).any()
         
-        # Spline interpolation
-        result_spline = interpolate_missing(data, method="spline")
+        # Spline interpolation - also requires order parameter
+        result_spline = interpolate_missing(longer_data, method="spline", order=3)
         assert not np.isnan(result_spline).any()
 
 

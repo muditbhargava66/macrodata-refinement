@@ -487,7 +487,7 @@ def plot_scatter(
 
 
 def plot_correlation_matrix(
-    data: Union[np.ndarray, Dict[str, np.ndarray]],
+    data: Union[np.ndarray, Dict[str, np.ndarray], pd.DataFrame],
     method: str = "pearson",
     cmap: str = "coolwarm",
     config: Optional[PlotConfig] = None
@@ -496,7 +496,7 @@ def plot_correlation_matrix(
     Plot a correlation matrix.
     
     Args:
-        data: 2D array of data or dictionary mapping variable names to data arrays
+        data: 2D array of data, dictionary mapping variable names to data arrays, or pandas DataFrame
         method: Correlation method ('pearson', 'kendall', 'spearman')
         cmap: Colormap name
         config: Plot configuration
@@ -528,8 +528,12 @@ def plot_correlation_matrix(
         # Convert to DataFrame with default column names
         df = pd.DataFrame(data)
     
+    elif isinstance(data, pd.DataFrame):
+        # Use the DataFrame directly
+        df = data
+    
     else:
-        raise ValueError("data must be a numpy ndarray or dictionary of arrays")
+        raise ValueError("data must be a numpy ndarray, dictionary of arrays, or pandas DataFrame")
     
     # Use default config if not provided
     if config is None:

@@ -1,7 +1,7 @@
 .. _api_io_writers:
 
 Data Writers
-===========
+============
 
 .. automodule:: mdr.io.writers
    :members:
@@ -9,13 +9,13 @@ Data Writers
    :show-inheritance:
 
 Overview
--------
+--------
 
 The ``writers`` module provides functions for writing processed data to various file formats.
 These functions handle data serialization, formatting, and output to persistent storage.
 
 Supported File Formats
---------------------
+----------------------
 
 The module supports writing data to the following formats:
 
@@ -26,16 +26,21 @@ The module supports writing data to the following formats:
 - **HDF5**: Hierarchical Data Format version 5 files
 
 Core Functions
-------------
+--------------
 
 .. autofunction:: mdr.io.writers.write_csv
+   :no-index:
 .. autofunction:: mdr.io.writers.write_json
+   :no-index:
 .. autofunction:: mdr.io.writers.write_excel
+   :no-index:
 .. autofunction:: mdr.io.writers.write_parquet
+   :no-index:
 .. autofunction:: mdr.io.writers.write_hdf5
+   :no-index:
 
 Usage Examples
-------------
+--------------
 
 Writing to a CSV file:
 

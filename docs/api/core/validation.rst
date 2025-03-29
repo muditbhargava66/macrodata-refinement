@@ -1,7 +1,7 @@
 .. _api_core_validation:
 
 Validation
-=========
+==========
 
 .. automodule:: mdr.core.validation
    :members:
@@ -9,7 +9,7 @@ Validation
    :show-inheritance:
 
 Overview
--------
+--------
 
 The ``validation`` module provides functions and classes for validating data quality through
 various checks and tests. It helps identify issues such as:
@@ -20,28 +20,28 @@ various checks and tests. It helps identify issues such as:
 - Inconsistencies between related variables
 
 Core Components
--------------
+---------------
 
 ValidationResult
-~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~
 
 .. autoclass:: mdr.core.validation.ValidationResult
    :members:
+   :no-index:
 
 The ``ValidationResult`` class encapsulates the results of validation checks, including 
 whether the data passed validation, any error messages, and relevant statistics.
 
 Data Validation Functions
-~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. autofunction:: mdr.core.validation.validate_data
-.. autofunction:: mdr.core.validation.check_range
-.. autofunction:: mdr.core.validation.check_missing
+   :no-index:
 .. autofunction:: mdr.core.validation.check_outliers
-.. autofunction:: mdr.core.validation.check_consistency
+   :no-index:
 
 Usage Examples
-------------
+--------------
 
 Basic validation of data:
 

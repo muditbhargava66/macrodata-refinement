@@ -1,7 +1,7 @@
 .. _api_io_formats:
 
 Data Formats
-===========
+============
 
 .. automodule:: mdr.io.formats
    :members:
@@ -9,21 +9,24 @@ Data Formats
    :show-inheritance:
 
 Overview
--------
+--------
 
 The ``formats`` module provides utilities for working with different data formats,
 including format detection, conversion, and validation. It supports the core
 I/O functionality of the MDR package.
 
 Core Functions
-------------
+--------------
 
 .. autofunction:: mdr.io.formats.detect_format
+   :no-index:
 .. autofunction:: mdr.io.formats.convert_format
+   :no-index:
 .. autofunction:: mdr.io.formats.validate_format
+   :no-index:
 
 Supported Formats
----------------
+-----------------
 
 The module supports the following data formats:
 
@@ -33,18 +36,10 @@ The module supports the following data formats:
 - **Parquet**: Apache Parquet columnar storage files
 - **HDF5**: Hierarchical Data Format version 5 files
 
-Format Converters
----------------
 
-.. autoclass:: mdr.io.formats.FormatConverter
-   :members:
-
-The ``FormatConverter`` class provides methods for converting between different
-data formats. It handles the complexities of data serialization and deserialization
-while preserving data types and structures.
 
 Usage Examples
-------------
+--------------
 
 Format detection:
 

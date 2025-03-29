@@ -21,6 +21,8 @@ from mdr.visualization.plots import (
     plot_time_series,
     plot_refinement_comparison,
     plot_validation_results,
+    plot_correlation_matrix,
+    PlotConfig,
     save_plot
 )
 from mdr.utils.logging import setup_logger, get_logger, LogLevel
@@ -246,6 +248,24 @@ def main() -> None:
     
     # Save transformed data
     write_csv(transformed_data, os.path.join(data_dir, "transformed_data.csv"))
+    
+    # Step 8: Demonstrate using pandas DataFrame with visualization
+    logger.info("Step 8: Creating correlation matrix with pandas DataFrame")
+    
+    # Create a pandas DataFrame from the refined data (without time)
+    refined_df = pd.DataFrame({
+        k: v for k, v in refined_data.items() if k != "time"
+    })
+    
+    # Create a correlation matrix plot
+    fig, ax = plot_correlation_matrix(
+        refined_df,
+        method="pearson",
+        cmap="coolwarm",
+        config=PlotConfig(title="Variable Correlations")
+    )
+    save_plot(fig, os.path.join(plot_dir, "correlation_matrix.png"))
+    plt.close(fig)
     
     logger.info(f"All output saved to: {os.path.abspath(output_dir)}")
     logger.info("Example completed successfully!")

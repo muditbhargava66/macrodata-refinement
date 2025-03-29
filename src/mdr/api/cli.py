@@ -246,24 +246,27 @@ def run_command(args: argparse.Namespace) -> int:
         # Run the command
         start_time = time.time()
         
-        if args.verbose:
+        # Check if verbose attribute exists before using
+        if hasattr(args, 'verbose') and args.verbose:
             logger.info(f"Running command: {command_name}")
-        
+            
         result = command.func(**arg_dict)
         
         end_time = time.time()
         
-        if args.verbose:
+        # Check if verbose attribute exists before using
+        if hasattr(args, 'verbose') and args.verbose:
             logger.info(f"Command {command_name} completed in {end_time - start_time:.2f} seconds")
-        
+            
         return result
         
     except Exception as e:
         logger.error(f"Error running command {command_name}: {str(e)}")
-        if args.verbose:
+        # Check if verbose attribute exists before using
+        if hasattr(args, 'verbose') and args.verbose:
             import traceback
             logger.error(traceback.format_exc())
-        
+
         return 1
 
 
@@ -504,14 +507,12 @@ _registry.register(CLICommand(
         {
             "name": "input_file",
             "help": "Path to the input file",
-            "type": str,
-            "required": True
+            "type": str
         },
         {
             "name": "output_file",
             "help": "Path to the output file",
-            "type": str,
-            "required": True
+            "type": str
         },
         {
             "name": "--smoothing-factor",
@@ -554,8 +555,7 @@ _registry.register(CLICommand(
         {
             "name": "input_file",
             "help": "Path to the input file",
-            "type": str,
-            "required": True
+            "type": str
         },
         {
             "name": "--output-file",
@@ -581,14 +581,12 @@ _registry.register(CLICommand(
         {
             "name": "input_file",
             "help": "Path to the input file",
-            "type": str,
-            "required": True
+            "type": str
         },
         {
             "name": "output_file",
             "help": "Path to the output file",
-            "type": str,
-            "required": True
+            "type": str
         },
         {
             "name": "--input-format",

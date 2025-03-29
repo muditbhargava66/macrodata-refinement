@@ -1,17 +1,17 @@
 .. _examples:
 
 Examples
-=======
+========
 
 This section provides examples of how to use the Macrodata Refinement (MDR) package
 for common data refinement tasks. These examples demonstrate key features and
 workflows to help you get started quickly.
 
 Basic Examples
-------------
+--------------
 
 Basic Data Refinement
-~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
 
 A simple example of refining data by removing outliers, imputing missing values, and smoothing:
 
@@ -38,7 +38,7 @@ A simple example of refining data by removing outliers, imputing missing values,
     print("Refined data:", refined_data)
 
 Data Validation
-~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~
 
 Validating data quality before refinement:
 
@@ -80,7 +80,7 @@ Validating data quality before refinement:
                 print(f"  - {msg}")
 
 Data Visualization
-~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
 
 Visualizing the effects of refinement:
 
@@ -109,10 +109,10 @@ Visualizing the effects of refinement:
     plt.show()
 
 Advanced Examples
---------------
+-----------------
 
 Complete Workflow
-~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
 
 A complete workflow from data loading to saving the refined and transformed data:
 
@@ -195,7 +195,7 @@ A complete workflow from data loading to saving the refined and transformed data
     write_csv(transformed_dict, "transformed_data.csv")
 
 Working with Multiple Data Sources
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Combining and refining data from multiple sources:
 
@@ -227,7 +227,7 @@ Combining and refining data from multiple sources:
     write_csv(refined_dict, "refined_combined_data.csv")
 
 Using the Command-Line Interface
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Using the MDR command-line interface for batch processing:
 
@@ -254,7 +254,7 @@ Using the MDR command-line interface for batch processing:
     done
 
 Using the REST API
-~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
 
 Using the MDR REST API from a Python client:
 
@@ -289,7 +289,7 @@ Using the MDR REST API from a Python client:
     print("Refined data:", result["refined_data"])
 
 Jupyter Notebook Examples
------------------------
+-------------------------
 
 For interactive examples, see the Jupyter notebooks in the `examples/notebooks` directory:
 

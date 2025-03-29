@@ -1,7 +1,7 @@
 .. _api_api_rest:
 
 REST API
-=======
+========
 
 .. automodule:: mdr.api.rest
    :members:
@@ -9,59 +9,44 @@ REST API
    :show-inheritance:
 
 Overview
--------
+--------
 
 The ``rest`` module provides a REST API for the MDR package, allowing remote access
 to data refinement, validation, and transformation capabilities. The API is built
 with FastAPI and includes comprehensive documentation using OpenAPI.
 
 API Endpoints
------------
+-------------
 
 The REST API provides the following endpoints:
 
 - **/refinement**: Refine data by removing outliers, imputing missing values, and smoothing
 - **/validation**: Validate data quality using configurable checks
-- **/transformation**: Apply transformations to data
-- **/conversion**: Convert data between different formats
-- **/health**: Check API health status
+
 - **/docs**: Interactive API documentation
 
 Server Configuration
-------------------
+--------------------
 
 .. autoclass:: mdr.api.rest.APIConfig
+   :no-index:
    :members:
 
 The ``APIConfig`` class defines the configuration for the REST API server,
 including host, port, logging settings, and security options.
 
 Core Endpoint Functions
---------------------
+-----------------------
 
 .. autofunction:: mdr.api.rest.refine_data_endpoint
+   :no-index:
 .. autofunction:: mdr.api.rest.validate_data_endpoint
-.. autofunction:: mdr.api.rest.transform_data_endpoint
-.. autofunction:: mdr.api.rest.convert_data_endpoint
-.. autofunction:: mdr.api.rest.health_check
+   :no-index:
 
-Data Models
----------
 
-.. autoclass:: mdr.api.rest.RefinementRequest
-   :members:
-
-.. autoclass:: mdr.api.rest.ValidationRequest
-   :members:
-
-.. autoclass:: mdr.api.rest.TransformationRequest
-   :members:
-
-.. autoclass:: mdr.api.rest.ConversionRequest
-   :members:
 
 Running the API Server
---------------------
+----------------------
 
 The API server can be run using the included command-line interface:
 
@@ -83,7 +68,7 @@ Or using the Python API:
     start_api_server(host="localhost", port=8000)
 
 Docker Deployment
----------------
+-----------------
 
 The API server can also be deployed using Docker:
 
@@ -103,7 +88,7 @@ Or using Docker Compose:
     docker-compose up mdr-api
 
 API Usage Examples
----------------
+------------------
 
 Using curl:
 

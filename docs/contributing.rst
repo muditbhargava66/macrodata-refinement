@@ -1,13 +1,13 @@
 .. _contributing:
 
 Contributing Guide
-================
+==================
 
 Thank you for your interest in contributing to Macrodata Refinement (MDR)! This guide 
 provides information on how to contribute to the project.
 
 Getting Started
--------------
+---------------
 
 1. **Fork the repository**:
    
@@ -38,10 +38,10 @@ Getting Started
       pytest
 
 Development Workflow
-------------------
+--------------------
 
 Branching Strategy
-~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
 
 - **main**: The main branch contains the latest stable code.
 - **dev**: Development branch for integrating features before release.
@@ -49,7 +49,7 @@ Branching Strategy
 - **Fix branches**: Create branches from ``dev`` for bug fixes (naming: ``fix/issue-description``).
 
 Commit Guidelines
-~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
 
 We follow the `Conventional Commits <https://www.conventionalcommits.org/>`_ specification:
 
@@ -62,7 +62,7 @@ We follow the `Conventional Commits <https://www.conventionalcommits.org/>`_ spe
 - ``chore: maintenance tasks``
 
 Pull Request Process
-~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 
 1. **Create a new branch** from ``dev`` for your changes.
 2. **Make your changes**, adhering to the coding standards.
@@ -74,10 +74,10 @@ Pull Request Process
 8. **Wait for review** and address any feedback.
 
 Coding Standards
---------------
+----------------
 
 Type Safety
-~~~~~~~~~~
+~~~~~~~~~~~
 
 MDR strongly emphasizes type safety. All code must include:
 
@@ -105,7 +105,7 @@ Example:
        return value * factor
 
 Testing
-~~~~~~
+~~~~~~~
 
 - All new features must include unit tests.
 - Tests should be placed in the appropriate directory under ``tests/``.
@@ -113,14 +113,14 @@ Testing
 - Aim for at least 90% test coverage for new code.
 
 Documentation
-~~~~~~~~~~~
+~~~~~~~~~~~~~
 
 - All public functions, classes, and methods must have docstrings following Google style.
 - Update the documentation when changing functionality.
 - Add examples for non-trivial features.
 
 Building Documentation
---------------------
+----------------------
 
 To build the documentation locally:
 
@@ -151,14 +151,14 @@ To build the documentation locally:
       start _build/html/index.html
 
 Release Process
--------------
+---------------
 
 1. **Versioning**: We follow `Semantic Versioning <https://semver.org/>`_.
 2. **Changelog**: All changes are documented in the CHANGELOG.md file.
 3. **Releases**: New releases are created from the ``main`` branch after merging from ``dev``.
 
 Communication
------------
+-------------
 
 - **Issues**: Create GitHub issues for bugs, feature requests, or questions.
 - **Discussions**: Use GitHub Discussions for more open-ended conversations.

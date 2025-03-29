@@ -12,10 +12,9 @@ from typing import Dict, List, Tuple, Any, Generator, Optional
 from mdr.core.refinement import RefinementConfig
 
 
-@pytest.fixture
-def sample_data() -> Dict[str, np.ndarray]:
+def create_sample_data() -> Dict[str, np.ndarray]:
     """
-    Generate sample data for testing.
+    Helper function to generate sample data.
     
     Returns:
         Dictionary of variable names to sample data arrays
@@ -43,6 +42,34 @@ def sample_data() -> Dict[str, np.ndarray]:
 
 
 @pytest.fixture
+def sample_data() -> Dict[str, np.ndarray]:
+    """
+    Generate sample data for testing.
+    
+    Returns:
+        Dictionary of variable names to sample data arrays
+    """
+    return create_sample_data()
+
+
+def create_sample_data_with_outliers() -> Dict[str, np.ndarray]:
+    """
+    Helper function to generate sample data with outliers.
+    
+    Returns:
+        Dictionary of variable names to sample data arrays with outliers
+    """
+    data = create_sample_data()
+    
+    # Add outliers
+    data["linear"][10] = 100.0
+    data["sinusoidal"][30] = 5.0
+    data["exponential"][50] = 0.0
+    
+    return data
+
+
+@pytest.fixture
 def sample_data_with_outliers() -> Dict[str, np.ndarray]:
     """
     Generate sample data with outliers for testing.
@@ -50,12 +77,22 @@ def sample_data_with_outliers() -> Dict[str, np.ndarray]:
     Returns:
         Dictionary of variable names to sample data arrays with outliers
     """
-    data = sample_data()
+    return create_sample_data_with_outliers()
+
+
+def create_sample_data_with_missing() -> Dict[str, np.ndarray]:
+    """
+    Helper function to generate sample data with missing values.
     
-    # Add outliers
-    data["linear"][10] = 100.0
-    data["sinusoidal"][30] = 5.0
-    data["exponential"][50] = 0.0
+    Returns:
+        Dictionary of variable names to sample data arrays with missing values
+    """
+    data = create_sample_data()
+    
+    # Add missing values
+    data["linear"][20] = np.nan
+    data["sinusoidal"][40:45] = np.nan
+    data["exponential"][70] = np.nan
     
     return data
 
@@ -68,12 +105,22 @@ def sample_data_with_missing() -> Dict[str, np.ndarray]:
     Returns:
         Dictionary of variable names to sample data arrays with missing values
     """
-    data = sample_data()
+    return create_sample_data_with_missing()
+
+
+def create_sample_data_with_outliers_and_missing() -> Dict[str, np.ndarray]:
+    """
+    Helper function to generate sample data with both outliers and missing values.
+    
+    Returns:
+        Dictionary of variable names to sample data arrays with outliers and missing values
+    """
+    data = create_sample_data_with_outliers()
     
     # Add missing values
-    data["linear"][20] = np.nan
-    data["sinusoidal"][40:45] = np.nan
-    data["exponential"][70] = np.nan
+    data["linear"][25] = np.nan
+    data["sinusoidal"][45:50] = np.nan
+    data["exponential"][75] = np.nan
     
     return data
 
@@ -86,14 +133,7 @@ def sample_data_with_outliers_and_missing() -> Dict[str, np.ndarray]:
     Returns:
         Dictionary of variable names to sample data arrays with outliers and missing values
     """
-    data = sample_data_with_outliers()
-    
-    # Add missing values
-    data["linear"][25] = np.nan
-    data["sinusoidal"][45:50] = np.nan
-    data["exponential"][75] = np.nan
-    
-    return data
+    return create_sample_data_with_outliers_and_missing()
 
 
 @pytest.fixture

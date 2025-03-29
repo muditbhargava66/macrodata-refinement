@@ -193,7 +193,8 @@ def detect_seasonality(
 def interpolate_missing(
     data: np.ndarray,
     method: str = 'linear',
-    max_gap: Optional[int] = None
+    max_gap: Optional[int] = None,
+    order: Optional[int] = None
 ) -> np.ndarray:
     """
     Interpolate missing values in a data array.
@@ -246,7 +247,10 @@ def interpolate_missing(
                 series.iloc[start_idx:end_idx+1] = np.nan
     
     # Interpolate using the specified method
-    interpolated = series.interpolate(method=method)
+    kwargs = {}
+    if method in ['spline', 'polynomial'] and order is not None:
+        kwargs['order'] = order
+    interpolated = series.interpolate(method=method, **kwargs)
     
     # Return as numpy array
     return interpolated.to_numpy()

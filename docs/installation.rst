@@ -1,12 +1,12 @@
 .. _installation:
 
 Installation
-===========
+============
 
 This section covers how to install Macrodata Refinement (MDR) in different environments.
 
 Prerequisites
-------------
+-------------
 
 MDR requires Python 3.10 or newer. It also depends on the following key packages:
 
@@ -16,7 +16,7 @@ MDR requires Python 3.10 or newer. It also depends on the following key packages
 * scikit-learn (optional, for advanced features)
 
 From PyPI (Recommended)
----------------------
+-----------------------
 
 The easiest way to install MDR is using pip:
 
@@ -33,7 +33,7 @@ For development features:
 The development version includes additional dependencies for testing, documentation, and development.
 
 From Source
----------
+-----------
 
 To install from source, first clone the repository:
 
@@ -46,7 +46,7 @@ To install from source, first clone the repository:
 This installs MDR in development mode, so changes to the source code will be reflected immediately.
 
 Using Docker
------------
+------------
 
 MDR provides a Docker image for easy deployment, especially for the API:
 
@@ -57,7 +57,7 @@ MDR provides a Docker image for easy deployment, especially for the API:
 This will start the MDR API server on the default port. You can configure the port and other settings in the `docker-compose.yml` file.
 
 Verifying Installation
---------------------
+----------------------
 
 To verify that MDR is installed correctly, you can run:
 
@@ -83,7 +83,7 @@ Or run a simple example:
     print("MDR installed successfully!")
 
 Troubleshooting
--------------
+---------------
 
 Common installation issues and their solutions:
 

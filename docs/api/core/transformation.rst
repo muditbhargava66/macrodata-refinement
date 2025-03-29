@@ -1,7 +1,7 @@
 .. _api_core_transformation:
 
 Transformation
-============
+==============
 
 .. automodule:: mdr.core.transformation
    :members:
@@ -9,7 +9,7 @@ Transformation
    :show-inheritance:
 
 Overview
--------
+--------
 
 The ``transformation`` module provides functions for transforming data through various
 statistical and mathematical operations. These transformations help prepare data
@@ -17,16 +17,13 @@ for analysis or visualization by standardizing scales, normalizing distributions
 or applying mathematical transformations.
 
 Core Functions
-------------
+--------------
 
 .. autofunction:: mdr.core.transformation.transform_data
-.. autofunction:: mdr.core.transformation.normalize
-.. autofunction:: mdr.core.transformation.scale
-.. autofunction:: mdr.core.transformation.log_transform
-.. autofunction:: mdr.core.transformation.power_transform
+   :no-index:
 
 Available Transformations
------------------------
+-------------------------
 
 The module supports the following transformation types:
 
@@ -38,7 +35,7 @@ The module supports the following transformation types:
 - **winsorize**: Limit extreme values to reduce the effect of outliers
 
 Usage Examples
-------------
+--------------
 
 Basic transformation of data:
 

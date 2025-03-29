@@ -1,7 +1,7 @@
 .. _api_core_refinement:
 
 Refinement
-=========
+==========
 
 .. automodule:: mdr.core.refinement
    :members:
@@ -9,7 +9,7 @@ Refinement
    :show-inheritance:
 
 Overview
--------
+--------
 
 The ``refinement`` module provides functions and classes for refining macrodata through various
 statistical and analytical methods. Key capabilities include:
@@ -20,29 +20,35 @@ statistical and analytical methods. Key capabilities include:
 - Applying a complete refinement pipeline
 
 Core Components
--------------
+---------------
 
 RefinementConfig
-~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~
 
 .. autoclass:: mdr.core.refinement.RefinementConfig
    :members:
    :special-members: __post_init__
+   :no-index:
 
 The ``RefinementConfig`` class is used to configure the refinement process, specifying parameters
 such as smoothing factor, outlier threshold, imputation method, and normalization type.
 
 Data Refinement Functions
-~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. autofunction:: mdr.core.refinement.smooth_data
+   :no-index:
 .. autofunction:: mdr.core.refinement.remove_outliers
+   :no-index:
 .. autofunction:: mdr.core.refinement.impute_missing_values
+   :no-index:
 .. autofunction:: mdr.core.refinement.refine_data
+   :no-index:
 .. autofunction:: mdr.core.refinement.apply_refinement_pipeline
+   :no-index:
 
 Usage Examples
-------------
+--------------
 
 Basic refinement of a single data array:
 

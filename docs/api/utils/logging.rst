@@ -1,7 +1,7 @@
 .. _api_utils_logging:
 
 Logging Utilities
-===============
+=================
 
 .. automodule:: mdr.utils.logging
    :members:
@@ -9,41 +9,37 @@ Logging Utilities
    :show-inheritance:
 
 Overview
--------
+--------
 
 The ``logging`` module provides a consistent logging framework for the MDR package.
 It includes functions for setting up loggers, configuring log levels, formatting
 log messages, and routing logs to appropriate outputs.
 
 Core Components
--------------
+---------------
 
 LogLevel
-~~~~~~~
+~~~~~~~~
 
 .. autoclass:: mdr.utils.logging.LogLevel
    :members:
+   :no-index:
 
 An enumeration of log levels used in MDR, including DEBUG, INFO, WARNING, ERROR, and CRITICAL.
 
 Functions
---------
+---------
 
 .. autofunction:: mdr.utils.logging.setup_logger
+   :no-index:
 .. autofunction:: mdr.utils.logging.get_logger
+   :no-index:
 .. autofunction:: mdr.utils.logging.set_log_level
-.. autofunction:: mdr.utils.logging.get_log_level
+   :no-index:
 
-Class-Based Logging
------------------
-
-.. autoclass:: mdr.utils.logging.LoggingMixin
-   :members:
-
-A mixin class that provides logging capabilities to other classes in the MDR package.
 
 Usage Examples
-------------
+--------------
 
 Basic logging setup:
 
@@ -94,7 +90,7 @@ Using the LoggingMixin:
     result = processor.process_data([1, 2, 3, 4, 5])
 
 Advanced Configuration
---------------------
+----------------------
 
 Configure logging with custom handlers and formatters:
 

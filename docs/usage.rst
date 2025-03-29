@@ -1,12 +1,12 @@
 .. _usage:
 
 Usage Guide
-==========
+===========
 
 This guide demonstrates how to use the Macrodata Refinement (MDR) package for data processing, validation, and transformation.
 
 Basic Workflow
-------------
+--------------
 
 A typical MDR workflow involves the following steps:
 
@@ -18,7 +18,7 @@ A typical MDR workflow involves the following steps:
 6. Saving processed data
 
 Quick Example
------------
+-------------
 
 Here's a quick example that demonstrates these steps:
 
@@ -72,12 +72,12 @@ Here's a quick example that demonstrates these steps:
     print("Refined data:", refined_data)
 
 Data Refinement
--------------
+---------------
 
 Data refinement is the core functionality of MDR. It includes outlier removal, missing value imputation, and data smoothing.
 
 Creating a Refinement Configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 First, create a configuration object that specifies how the refinement should be performed:
 
@@ -93,7 +93,7 @@ First, create a configuration object that specifies how the refinement should be
     )
 
 Applying Refinement
-~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~
 
 You can refine a single data array:
 
@@ -117,12 +117,12 @@ Or refine multiple variables at once:
     refined_dict = apply_refinement_pipeline(data_dict, config)
 
 Data Validation
--------------
+---------------
 
 MDR provides tools to validate data quality before refinement.
 
 Available Validation Checks
-~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - **Range**: Check if values are within expected ranges
 - **Missing**: Check the percentage of missing values
@@ -130,7 +130,7 @@ Available Validation Checks
 - **Consistency**: Check for internal consistency between variables
 
 Validation Example
-~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
 
 .. code-block:: python
 
@@ -155,12 +155,12 @@ Validation Example
     )
 
 Data Transformation
------------------
+-------------------
 
 After refining your data, you may need to transform it for further analysis.
 
 Available Transformations
-~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - **Normalize**: Scale data to a standard range
 - **Scale**: Apply linear scaling
@@ -168,7 +168,7 @@ Available Transformations
 - **Power**: Apply power transformation
 
 Transformation Example
-~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: python
 
@@ -182,12 +182,12 @@ Transformation Example
     transformed_data = transform_data(refined_data, transformations)
 
 Visualization
------------
+-------------
 
 MDR provides various visualization tools to help understand your data before and after processing.
 
 Time Series Plots
-~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
 
 .. code-block:: python
 
@@ -197,7 +197,7 @@ Time Series Plots
     plt.show()
 
 Refinement Comparison
-~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: python
 
@@ -207,7 +207,7 @@ Refinement Comparison
     plt.show()
 
 Validation Results
-~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
 
 .. code-block:: python
 
@@ -217,33 +217,33 @@ Validation Results
     plt.show()
 
 Command-Line Interface
---------------------
+----------------------
 
 MDR provides a command-line interface for common operations:
 
 Refining Data
-~~~~~~~~~~~~
+~~~~~~~~~~~~~
 
 .. code-block:: bash
 
     mdr refine input.csv output.csv --smoothing-factor 0.2 --outlier-threshold 3.0
 
 Validating Data
-~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~
 
 .. code-block:: bash
 
     mdr validate input.csv --output-file validation_results.json
 
 Converting File Formats
-~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: bash
 
     mdr convert input.csv output.parquet
 
 Advanced Usage
-------------
+--------------
 
 For more advanced usage examples, please refer to the :ref:`examples` section, which includes:
 

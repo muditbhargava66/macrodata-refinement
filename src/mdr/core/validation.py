@@ -324,7 +324,10 @@ def validate_data(
     Args:
         data_dict: Dictionary mapping variable names to data arrays
         checks: List of checks to perform
-        params: Parameters for each check, per variable
+        params: Parameters for each check - can be structured in two ways:
+               1. Global parameters: {check_name: {parameters}}
+               2. Variable-specific parameters: {variable_name: {check_name: {parameters}}}
+               Variable-specific parameters take precedence over global ones.
         
     Returns:
         Dictionary mapping variable names to ValidationResult objects
@@ -337,15 +340,29 @@ def validate_data(
     
     assert isinstance(params, dict), "params must be a dictionary"
     
+    # Check if there are global parameters (directly for check names)
+    global_params = {}
+    for check in checks:
+        if check in params:
+            global_params[check] = params[check]
+    
     validation_results = {}
     
     for key, data in data_dict.items():
         assert isinstance(data, np.ndarray), f"Value for key '{key}' must be a numpy ndarray"
         
-        # Get parameters for this variable, if specified
+        # Get variable-specific parameters, if specified
         var_params = params.get(key, {})
         
+        # Merge global and variable-specific parameters, with variable-specific taking precedence
+        merged_params = global_params.copy()
+        for check in checks:
+            if check in var_params:
+                if check not in merged_params:
+                    merged_params[check] = {}
+                merged_params[check].update(var_params[check])
+        
         # Validate this variable's data
-        validation_results[key] = check_data_integrity(data, checks, var_params)
+        validation_results[key] = check_data_integrity(data, checks, merged_params)
     
     return validation_results

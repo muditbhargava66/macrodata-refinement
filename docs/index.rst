@@ -16,7 +16,7 @@ Overview
 Macrodata Refinement (MDR) is a Python library designed to provide robust tools for working with macrodata - large-scale datasets that often contain outliers, missing values, and other quality issues. MDR offers a systematic approach to data refinement, with a strong emphasis on type safety and data integrity.
 
 Key Features
------------
+------------
 
 - **Data Refinement**: Clean your data by removing outliers, imputing missing values, and smoothing noisy data.
 - **Data Validation**: Assess data quality with configurable validation checks.
@@ -27,7 +27,7 @@ Key Features
 - **Type Safety**: Comprehensive type checking and validation for robust data processing.
 
 The Refinement Workflow
-----------------------
+-----------------------
 
 The data refinement process in MDR follows this workflow:
 

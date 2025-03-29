@@ -8,12 +8,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- Initial project structure and core functionality
-- Robust type checking and validation for floating-point values
+- Future development items will be listed here
+
+### Fixed
+- Fixed documentation build warnings by resolving duplicate object descriptions
+- Fixed reference to non-existent functions in documentation
+- Removed unsupported theme options in documentation configuration
 
 ## [0.1.0] - 2025-03-25
 
 ### Added
+- New visualization capabilities
+- Enhanced data transformation features
 - Core refinement module with data cleaning capabilities:
   - Detection and handling of outliers
   - Imputation of missing values
@@ -46,12 +52,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Histograms and box plots
   - Heatmaps and correlation matrices
   - Validation and refinement comparisons
+- Full documentation in Sphinx format
+- GitHub workflow configurations for CI/CD, releases, and documentation
+- Issue and pull request templates
 - Comprehensive documentation
 - Examples and tutorials
 - Development tools and scripts
 
+### Changed
+- Improved test reliability by implementing deterministic approaches
+- Enhanced error handling for CLI commands
+
 ### Fixed
-- None (initial release)
+- Modified `plot_correlation_matrix` to accept pandas DataFrames as input, making it more compatible with common data science workflows
+- Fixed datetime parsing warnings in formats.py by implementing a more robust approach with explicit format detection
+- Corrected CLI argument parsing for positional arguments
+- Fixed interpolation method in `helpers.py` to properly handle spline interpolation order parameter
+- Improved outlier detection tests to use mathematically guaranteed outlier datasets
+- Fixed validation test cases to properly verify outlier detection functionality
 
 ---
 

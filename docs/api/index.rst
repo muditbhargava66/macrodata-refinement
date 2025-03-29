@@ -1,12 +1,12 @@
 .. _api:
 
 API Reference
-============
+=============
 
 This section provides detailed documentation for all public modules, classes, and functions in the Macrodata Refinement (MDR) package.
 
 Core Components
---------------
+---------------
 
 .. toctree::
    :maxdepth: 2
@@ -16,7 +16,7 @@ Core Components
    core/transformation
 
 Input/Output Components
----------------------
+-----------------------
 
 .. toctree::
    :maxdepth: 2
@@ -26,7 +26,7 @@ Input/Output Components
    io/formats
 
 Visualization Components
-----------------------
+------------------------
 
 .. toctree::
    :maxdepth: 2
@@ -34,7 +34,7 @@ Visualization Components
    visualization/plots
 
 API Components
-------------
+--------------
 
 .. toctree::
    :maxdepth: 2
@@ -43,7 +43,7 @@ API Components
    api/rest
 
 Utility Components
-----------------
+------------------
 
 .. toctree::
    :maxdepth: 2

@@ -1,7 +1,7 @@
 .. _api_io_readers:
 
 Data Readers
-===========
+============
 
 .. automodule:: mdr.io.readers
    :members:
@@ -9,14 +9,14 @@ Data Readers
    :show-inheritance:
 
 Overview
--------
+--------
 
 The ``readers`` module provides functions for reading data from various file formats
 into numpy arrays or dictionaries of arrays. These functions handle data loading,
 parsing, and initial preprocessing to prepare data for the MDR refinement pipeline.
 
 Supported File Formats
---------------------
+----------------------
 
 The module supports reading data from the following formats:
 
@@ -27,16 +27,21 @@ The module supports reading data from the following formats:
 - **HDF5**: Hierarchical Data Format version 5 files
 
 Core Functions
-------------
+--------------
 
 .. autofunction:: mdr.io.readers.read_csv
+   :no-index:
 .. autofunction:: mdr.io.readers.read_json
+   :no-index:
 .. autofunction:: mdr.io.readers.read_excel
+   :no-index:
 .. autofunction:: mdr.io.readers.read_parquet
+   :no-index:
 .. autofunction:: mdr.io.readers.read_hdf5
+   :no-index:
 
 Usage Examples
-------------
+--------------
 
 Reading from a CSV file:
 

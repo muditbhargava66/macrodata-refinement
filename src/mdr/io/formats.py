@@ -14,6 +14,8 @@ from enum import Enum, auto
 import json
 import csv
 import tempfile
+from datetime import datetime
+import warnings
 
 # Initialize mimetypes
 mimetypes.init()
@@ -393,7 +395,13 @@ def infer_column_types(
                 type_map[str(column)] = "float"
                 
         # Check if the column is datetime-like
-        elif pd.api.types.is_datetime64_dtype(col_data) or pd.to_datetime(col_data, errors='coerce').notna().all():
+        elif pd.api.types.is_datetime64_dtype(col_data) or (
+            # Try to detect datetime format instead of relying on dateutil
+            # First check if it's a string or object column
+            (pd.api.types.is_string_dtype(col_data) or pd.api.types.is_object_dtype(col_data)) and 
+            # Then try common datetime formats
+            try_common_datetime_formats(col_data)
+        ):
             type_map[str(column)] = "datetime"
             
         # Check if the column is boolean
@@ -442,8 +450,10 @@ def cast_column_types(
             result[column] = pd.to_numeric(result[column], errors='coerce').astype(float)
             
         elif target_type == "datetime":
-            # Convert to datetime
-            result[column] = pd.to_datetime(result[column], errors='coerce')
+            # Convert to datetime with warning suppressed
+            with warnings.catch_warnings():
+                warnings.filterwarnings("ignore", message="Could not infer format", category=UserWarning)
+                result[column] = pd.to_datetime(result[column], errors='coerce')
             
         elif target_type == "boolean":
             # Convert to boolean
@@ -485,6 +495,74 @@ def is_numeric_column(data: np.ndarray) -> bool:
     return False
 
 
+def try_common_datetime_formats(col_data: pd.Series) -> bool:
+    """
+    Try to parse a column with common datetime formats.
+    
+    Args:
+        col_data: The pandas Series to check
+        
+    Returns:
+        True if the column contains datetime data, False otherwise
+    """
+    # Get a sample of the column (up to 100 non-null values) to check formats
+    sample = col_data.dropna().head(100)
+    if len(sample) == 0:
+        return False
+    
+    # Common datetime formats to try
+    formats = [
+        '%Y-%m-%d',                  # 2023-01-31
+        '%Y/%m/%d',                  # 2023/01/31
+        '%d-%m-%Y',                  # 31-01-2023
+        '%d/%m/%Y',                  # 31/01/2023
+        '%m-%d-%Y',                  # 01-31-2023
+        '%m/%d/%Y',                  # 01/31/2023
+        '%Y-%m-%d %H:%M:%S',         # 2023-01-31 14:30:45
+        '%Y-%m-%d %H:%M',            # 2023-01-31 14:30
+        '%Y/%m/%d %H:%M:%S',         # 2023/01/31 14:30:45
+        '%d-%m-%Y %H:%M:%S',         # 31-01-2023 14:30:45
+        '%d/%m/%Y %H:%M:%S',         # 31/01/2023 14:30:45
+        '%m-%d-%Y %H:%M:%S',         # 01-31-2023 14:30:45
+        '%m/%d/%Y %H:%M:%S',         # 01/31/2023 14:30:45
+        '%Y-%m-%dT%H:%M:%S',         # 2023-01-31T14:30:45 (ISO format)
+        '%Y-%m-%dT%H:%M:%S.%f',      # 2023-01-31T14:30:45.123456
+        '%Y%m%d',                    # 20230131
+        '%Y%m%d%H%M%S',              # 20230131143045
+    ]
+    
+    # Try each format
+    for fmt in formats:
+        try:
+            # Try to parse all sample values with this format
+            success_count = 0
+            for val in sample:
+                try:
+                    if isinstance(val, str):
+                        datetime.strptime(val, fmt)
+                        success_count += 1
+                except ValueError:
+                    pass
+            
+            # If more than 90% of values match this format, consider it a datetime column
+            if success_count / len(sample) > 0.9:
+                return True
+        except Exception:
+            continue
+    
+    # If no format was good enough, fall back to pandas with warning suppressed
+    try:
+        # Suppress the specific warning about format inference
+        with warnings.catch_warnings():
+            warnings.filterwarnings("ignore", message="Could not infer format", category=UserWarning)
+            datetime_data = pd.to_datetime(sample, errors='coerce')
+        
+        # If we have more than 80% non-NaN values after conversion, consider it datetime
+        return datetime_data.notna().mean() > 0.8
+    except Exception:
+        return False
+
+
 def is_datetime_column(data: np.ndarray) -> bool:
     """
     Check if a numpy array contains datetime data.
@@ -501,12 +579,12 @@ def is_datetime_column(data: np.ndarray) -> bool:
     if np.issubdtype(data.dtype, np.datetime64):
         return True
     
-    # For object dtypes, try to convert to datetime and check for success
+    # For object dtypes, try common datetime formats
     if data.dtype == np.dtype('O'):
         try:
-            datetime_data = pd.to_datetime(data, errors='coerce')
-            # If we have more than 80% non-NaN values after conversion, consider it datetime
-            return datetime_data.notna().mean() > 0.8
+            # Convert to pandas Series for easier handling
+            series = pd.Series(data)
+            return try_common_datetime_formats(series)
         except Exception:
             return False
     
