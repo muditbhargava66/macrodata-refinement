@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  mdr-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: mdr-api
+    container_name: mdr-api
+    command: ["python", "-m", "mdr.api.rest"]
+    volumes:
+      - ./data:/app/data
+      - ./output:/app/output
+    ports:
+      - "8000:8000"
+    environment:
+      - MDR_LOG_LEVEL=INFO
+      - MDR_HOST=0.0.0.0
+      - MDR_PORT=8000
+      - MDR_DEBUG=false
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+    restart: unless-stopped
+
+  mdr-notebook:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: mdr-notebook
+    container_name: mdr-notebook
+    command: ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]
+    volumes:
+      - ./examples/notebooks:/app/notebooks
+      - ./data:/app/data
+      - ./output:/app/output
+    ports:
+      - "8888:8888"
+    environment:
+      - MDR_LOG_LEVEL=INFO
+    depends_on:
+      - mdr-api
+
+  mdr-docs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: mdr-docs
+    container_name: mdr-docs
+    command: ["sphinx-autobuild", "docs", "docs/_build/html", "--host", "0.0.0.0", "--port", "8080"]
+    volumes:
+      - ./docs:/app/docs
+    ports:
+      - "8080:8080"
+    environment:
+      - MDR_LOG_LEVEL=INFO
+    depends_on:
+      - mdr-api
+
+volumes:
+  data:
+  output:
+
+networks:
+  default:
+    name: mdr-network
